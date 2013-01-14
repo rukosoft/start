@@ -11,34 +11,36 @@ enyo.kind({
 					classes : "app-toolbars",
 					components : [{
 							classes : "app-heading",
-							content : "Current Data"
-						}
-					]
-				}, {
-					kind : "onyx.PickerDecorator",
-					components : [{
-							kind : "onyx.PickerButton",
-							style : "margin: 10px; width: 90%;"
+							style : "float: left;",
+							content : "PV-logger"
 						}, {
-							kind : "onyx.Picker",
-							onSelect : "sensorChanged",
+							kind : "onyx.PickerDecorator",
+							style : "float: right;",
 							components : [{
-									active : true,
-									content : "Sensor 1"
+									kind : "onyx.PickerButton",
+									style : "padding: 6px; min-width: 90px",
 								}, {
-									content : "Sensor 2"
-								}, {
-									content : "Sensor 3"
-								}, {
-									content : "Sensor 4"
+									kind : "onyx.Picker",
+									onSelect : "loggerChanged",
+									components : [{
+											active : true,
+											content : "Logger 1"
+										}, {
+											content : "Logger 2"
+										}, {
+											content : "Logger 3"
+										}, {
+											content : "Logger 4"
+										}
+									]
 								}
 							]
 						}
 					]
-				}, {
+				}, /* {
 					style : "text-align: center; font-size: 16px; padding-bottom: 10px; color: grey;",
 					content : "Tap a row to see its history"
-				}, {
+				}, */ {
 					kind : "Scroller",
 					fit : true,
 					components : [{
@@ -48,18 +50,18 @@ enyo.kind({
 									name : "listItem",
 									classes : "app-listitem ",
 									components : [{
-											name : "sensorDataItemLabel",
+											name : "loggerDataItemLabel",
 											tag : "span",
 											style : "display: inline-block; width: 50%; color: lightgrey;"
 										}, {
 											tag : "span",
 											style : "float: right; ",
 											components : [{
-													name : "sensorDataItemValue",
+													name : "loggerDataItemValue",
 													tag : "span",
 													style : "padding-left: 15px; padding-right: 15px; font-size: 24px;"
 												}, {
-													name : "sensorDataItemUnit",
+													name : "loggerDataItemUnit",
 													tag : "span",
 													style : "display: inline-block; width: 50px; color: lightgrey;"
 												}
@@ -68,7 +70,7 @@ enyo.kind({
 									]
 								}
 							]
-						},
+						}
 					]
 				}, {
 					kind : "onyx.Toolbar",
@@ -77,13 +79,13 @@ enyo.kind({
 							name : "AccountButton",
 							kind : "onyx.Button",
 							ontap : "accountButtonTapped",
-							classes : "app-button",
+							classes : "app-iconbutton",
 							style : "float: left;",
 							components : [{
 									kind : "onyx.Icon",
 									src : "assets/icon-user.png"
 								}, {
-									classes : "app-button-caption",
+									classes : "app-iconbutton-caption",
 									content : "Account"
 								}
 							]
@@ -91,13 +93,13 @@ enyo.kind({
 							name : "RefreshButton",
 							kind : "onyx.Button",
 							ontap : "refreshButtonTapped",
-							classes : "app-button",
+							classes : "app-iconbutton",
 							style : "float: right;",
 							components : [{
 									kind : "onyx.Icon",
 									src : "assets/icon-refresh.png"
 								}, {
-									classes : "app-button-caption",
+									classes : "app-iconbutton-caption",
 									content : "Refresh"
 								}
 							]
@@ -114,7 +116,7 @@ enyo.kind({
 					classes : "app-toolbars",
 					components : [{
 							classes : "app-heading",
-							content : "History Data"
+							content : "History"
 						}
 					]
 				}, {
@@ -140,19 +142,19 @@ enyo.kind({
 	
 	create : function () {
 		this.inherited(arguments);
-		this.$.repeater.setCount(this.sensorData.length);
+		this.$.repeater.setCount(this.loggerData.length);
 	},
 	
 	setupItem : function (inSender, inEvent) {
 		var index = inEvent.index;
 		var item = inEvent.item;
-		var sensorDataItem = this.sensorData[index];
-		item.$.sensorDataItemLabel.setContent(sensorDataItem.label);
-		item.$.sensorDataItemValue.setContent(sensorDataItem.value);
-		item.$.sensorDataItemUnit.setContent(sensorDataItem.unit);
+		var loggerDataItem = this.loggerData[index];
+		item.$.loggerDataItemLabel.setContent(loggerDataItem.label);
+		item.$.loggerDataItemValue.setContent(loggerDataItem.value);
+		item.$.loggerDataItemUnit.setContent(loggerDataItem.unit);
 	},
 	
-	sensorData : [{
+	loggerData : [{
 			label : "Sunlight intensity",
 			value : 1031,
 			unit : "W/m²"

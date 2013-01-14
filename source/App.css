@@ -6,21 +6,24 @@
 .app-panels > * {
     width: 320px;
     box-shadow: -4px -4px 4px rgba(0,0,0,0.3);
-	background-image:url('../assets/bg.png');
+	/* background-color: gray; */
+	background-image: url('../assets/bg.png');
 	/**/
 	color: white;
 }
 
 .app-toolbars {
-    min-height: 66px;
+    min-height: 70px;
+	/* background-color: #666666; */
+	/* background-image: url('../assets/bg.png'); */
 }
 
-.app-button {
+.app-iconbutton {
 	min-height: 45px;
 	padding: 6px;
 }
 
-.app-button-caption {
+.app-iconbutton-caption {
 	padding-left: 7px;
 	padding-right: 6px;
 }
